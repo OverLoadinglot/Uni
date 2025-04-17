@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kotof\\RiderProjects\\MerchShop\\MerchShop\\MerchShop.csproj": {}
+    "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kotof\\RiderProjects\\MerchShop\\MerchShop\\MerchShop.csproj": {
+    "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kotof\\RiderProjects\\MerchShop\\MerchShop\\MerchShop.csproj",
+        "projectUniqueName": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj",
         "projectName": "MerchShop",
-        "projectPath": "C:\\Users\\kotof\\RiderProjects\\MerchShop\\MerchShop\\MerchShop.csproj",
+        "projectPath": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj",
         "packagesPath": "C:\\Users\\kotof\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kotof\\RiderProjects\\MerchShop\\MerchShop\\obj\\",
+        "outputPath": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -48,6 +48,18 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
