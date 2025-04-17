@@ -197,3 +197,11 @@ C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\browser\lib\net
 C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\kotof\Uni\MerchShop\MerchShop\obj\Debug\net8.0\MerchShop.csproj.AssemblyReference.cache
 C:\Users\kotof\Uni\MerchShop\MerchShop\obj\Debug\net8.0\MerchShop.csproj.Up2Date
+C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\EntityFramework.SqlServer.dll
+C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\EntityFramework.dll
+C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\System.Data.SqlClient.dll
+C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\win-arm64\native\sni.dll
+C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\win-x64\native\sni.dll
+C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
+C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
