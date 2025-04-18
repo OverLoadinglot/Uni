@@ -13,10 +13,21 @@ namespace MerchShop.Controllers
         {
             _context = context;
         }
-
+        
         public IActionResult Registration()
         {
             return View();
+        }
+        
+        public IActionResult Login()
+        {
+            return View();
+        }
+    
+        public IActionResult UserList()
+        {
+            var users = _context.Users.ToList();
+            return View(users);
         }
 
         [HttpPost]
@@ -35,44 +46,45 @@ namespace MerchShop.Controllers
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
 
-                ExportUsersToJson();
-                
-                var users = _context.Users.ToList();
-                if (users.Count == 0)
-                {
-                    Console.WriteLine("Empty");
-                }
-                foreach (var u in users)
-                {
-                    Console.WriteLine($"ID: {u.Id}, Username: {u.Username}, Password: {u.Password}");
-                }
-
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Login");
             }
 
             return View(user);
         }
 
-        public IActionResult Index()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Login(string email, string password)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Username == email && u.Password == password);
+            if (user != null)
+            {
+                HttpContext.Session.SetString("Username", user.Username);
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.LoginError = "Invalid username or password.";
+            return View();
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteUser(int id)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            if (user != null)
+            {
+                _context.Users.Remove(user);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("UserList");
+        }
+
+        public IActionResult Users()
         {
             var users = _context.Users.ToList();
             return View(users);
-        }
-
-        private void ExportUsersToJson()
-        {
-            var users = _context.Users.ToList();
-
-            var json = JsonSerializer.Serialize(users, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "users.json");
-
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
-
-            System.IO.File.WriteAllText(filePath, json);
         }
     }
 }

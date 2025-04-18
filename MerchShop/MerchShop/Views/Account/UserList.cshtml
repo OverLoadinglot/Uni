@@ -1,0 +1,30 @@
+@model List<MerchShop.Models.User>
+
+<h2>User List</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var u in Model)
+    {
+    <tr>
+        <td>@u.Id</td>
+        <td>@u.Username</td>
+        <td>@u.Password</td>
+        <td>
+            <form asp-controller="Account" asp-action="DeleteUser" asp-route-id="@u.Id" method="post" onsubmit="return confirm('Are you sure?');">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>

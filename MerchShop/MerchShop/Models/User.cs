@@ -1,15 +1,21 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MerchShop.Models;
-
-public class User
+namespace MerchShop.Models
 {
-    public int Id { get; set; }
+    public class User
+    {
+        [Key]
+        public int Id { get; set; }
 
-    public string Username { get; set; } = null!;
+        [Required]
+        public string Username { get; set; }
 
-    public string Password { get; set; } = null!;
-    
-    [NotMapped]
-    public string ConfirmPassword { get; set; } = null!;
+        [Required]
+        public string Password { get; set; }
+
+        [NotMapped]
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
+        public string ConfirmPassword { get; set; }
+    }
 }
