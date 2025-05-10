@@ -1,15 +1,17 @@
 using System.Text.Json;
+using Azure.Core;
 using MerchShop.Models;
 using MerchShop.Models.Data;
+using MerchShop.Views.DBO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MerchShop.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly AppDBContent _context;
+        private readonly AppDBContext _context;
 
-        public AccountController(AppDBContent context)
+        public AccountController(AppDBContext context)
         {
             _context = context;
         }
@@ -32,34 +34,43 @@ namespace MerchShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Registration(User user)
+        public async Task<IActionResult> Registration(RegistrationDBO userDBO)
         {
             if (ModelState.IsValid)
             {
-                var existingUser = _context.Users.FirstOrDefault(u => u.Username == user.Username);
+                var existingUser = _context.Users.FirstOrDefault(u => u.Name == userDBO.Name);
                 if (existingUser != null)
                 {
                     ModelState.AddModelError("Username", "This username is already taken.");
-                    return View(user);
+                    return View(userDBO);
                 }
 
+                User user = new User()
+                {
+                    Name = userDBO.Name,
+                    Password = userDBO.Password,
+                    IdRole = 2
+                };
+                /*user.Name = userDBO.Name;
+                user.Password = userDBO.Password;
+                user.IdRole = 2;*/
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Login");
             }
 
-            return View(user);
+            return View(userDBO);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Login(string email, string password)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Username == email && u.Password == password);
+            var user = _context.Users.FirstOrDefault(u => u.Name == email && u.Password == password);
             if (user != null)
             {
-                HttpContext.Session.SetString("Username", user.Username);
+                HttpContext.Session.SetString("Username", user.Name);
                 return RedirectToAction("Index", "Home");
             }
 

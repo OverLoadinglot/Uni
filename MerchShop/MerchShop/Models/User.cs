@@ -3,19 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MerchShop.Models
 {
-    public class User
+    public class User()
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public string Username { get; set; }
+        public string Name { get; set; }
 
         [Required]
         public string Password { get; set; }
-
-        [NotMapped]
-        [Compare("Password", ErrorMessage = "Passwords do not match")]
-        public string ConfirmPassword { get; set; }
+        
+        public int IdRole { get; set; }
+        
+        [ForeignKey("IdRole")]
+        public Role Role { get; set; }
     }
 }

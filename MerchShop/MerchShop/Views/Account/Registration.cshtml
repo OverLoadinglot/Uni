@@ -1,13 +1,13 @@
-@model MerchShop.Models.User
+@model MerchShop.Views.DBO.RegistrationDBO;
 @{
 ViewData["Title"] = "Registration";
 }
 
 <form asp-action="Registration" method="post">
     <div class="mb-3">
-        <label asp-for="Username" class="form-label"></label>
-        <input asp-for="Username" class="form-control" />
-        <span asp-validation-for="Username" class="text-danger"></span>
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label asp-for="Password" class="form-label"></label>
