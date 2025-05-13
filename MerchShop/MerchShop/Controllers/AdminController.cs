@@ -12,7 +12,7 @@ public class AdminController : Controller
         _context = context;
     }
 
-    public IActionResult Index()
+    public IActionResult AdminPanel()
     {
         var users = _context.Users.ToList();
         return View(users);
@@ -29,6 +29,6 @@ public class AdminController : Controller
             _context.SaveChanges();
         }
 
-        return RedirectToAction("Index");
+        return RedirectToAction("AdminPanel");
     }
 }

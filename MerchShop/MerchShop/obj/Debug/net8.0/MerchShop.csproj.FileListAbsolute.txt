@@ -440,3 +440,7 @@ C:\Users\Женя\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\linux-x64\na
 C:\Users\Женя\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\osx-x64\native\libsqlite3.dylib
 C:\Users\Женя\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\win7-x64\native\sqlite3.dll
 C:\Users\Женя\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\win7-x86\native\sqlite3.dll
+C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\linux-x64\native\libsqlite3.so
+C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\osx-x64\native\libsqlite3.dylib
+C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\win7-x64\native\sqlite3.dll
+C:\Users\kotof\Uni\MerchShop\MerchShop\bin\Debug\net8.0\runtimes\win7-x86\native\sqlite3.dll

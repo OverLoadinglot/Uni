@@ -1,9 +1,8 @@
-using System.Text.Json;
-using Azure.Core;
 using MerchShop.Models;
 using MerchShop.Models.Data;
 using MerchShop.Views.DBO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MerchShop.Controllers
 {
@@ -51,14 +50,13 @@ namespace MerchShop.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(LoginDTO userDto)
         {
-            Console.WriteLine(_context.Users);
-            User user = _context.Users.FirstOrDefault(u => u.Name == userDto.Name && u.Password == userDto.Password);
-            Console.WriteLine(user);
+            User user = _context.Users
+                .Include(u => u.Role)
+                .FirstOrDefault(u => u.Name == userDto.Name && u.Password == userDto.Password);
             if (user != null)
             {
                 HttpContext.Session.SetString("Username", user.Name);
-                Console.WriteLine($"Роль: {user.Role}");
-                //HttpContext.Session.SetString("Role", user.Role);
+                HttpContext.Session.SetString("Role", user.Role.RoleName);
                 return RedirectToAction("Index", "Home");
             }
 
