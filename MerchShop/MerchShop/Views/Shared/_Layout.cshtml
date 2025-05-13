@@ -28,6 +28,37 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Shop">Shop</a>
                     </li>
+                    
+                    @{
+                        var role = Context.Session.GetString("Role");
+                    }
+                    @if (role == "Admin")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Admin" asp-action="AdminPanel">User List</a>
+                        </li>
+                    }
+                    
+                    @if (role == null)
+                    {
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Authentication" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <span class="nav-link text-muted">/</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Authentication" asp-action="Registration">Register</a>
+                            </li>
+                        </ul>
+                    }
+                    @if (role != null)
+                    {
+                        <ul class="navbar-nav ms-auto">
+                            
+                        </ul>
+                    }
                 </ul>
             </div>
         </div>
