@@ -1,5 +1,6 @@
 using MerchShop.Models.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MerchShop.Controllers;
 
@@ -12,9 +13,12 @@ public class AdminController : Controller
         _context = context;
     }
 
-    public IActionResult AdminPanel()
+    public async Task<IActionResult> AdminPanel()
     {
-        var users = _context.Users.ToList();
+        var users = await _context.Users
+            .Include(u => u.Role)
+            .ToListAsync();
+
         return View(users);
     }
 

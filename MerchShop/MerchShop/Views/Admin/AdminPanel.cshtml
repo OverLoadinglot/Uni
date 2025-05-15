@@ -8,6 +8,7 @@
         <th>ID</th>
         <th>Username</th>
         <th>Password</th>
+        <th>Role</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -18,6 +19,7 @@
         <td>@u.Id</td>
         <td>@u.Name</td>
         <td>@u.Password</td>
+        <td>@u.Role.RoleName</td>
         <td>
             <form asp-controller="Admin" asp-action="AdminPanel" asp-route-id="@u.Id" method="post" onsubmit="return confirm('Are you sure?');">
                 @Html.AntiForgeryToken()

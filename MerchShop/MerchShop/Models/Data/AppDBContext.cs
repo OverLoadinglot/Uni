@@ -8,6 +8,5 @@ public class AppDBContext : DbContext
     
     public DbSet<User> Users { get; set; }
     public DbSet<Role> Roles { get; set; }
-    /*public DbSet<User> Products { get; set; }
-    public DbSet<User> Discounts { get; set; }*/
+    public DbSet<Product> Products { get; set; }
 }

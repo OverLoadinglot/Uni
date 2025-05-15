@@ -1,0 +1,68 @@
+@model List<Product>
+@{
+    ViewData["Title"] = "Shop";
+}
+
+<div class="container">
+    <h1 class="text-center">Shop</h1>
+    <div class="row mt-4">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 shadow-sm">
+                    <img src="@item.Image" class="card-img-top" alt="@item.Name">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@item.Name</h5>
+
+                        @if (item.Discount != null)
+                        {
+                            <div class="d-flex justify-content-center gap-2">
+                                <p class="text-muted text-decoration-line-through mb-0">$@item.Price.ToString("0.00")</p>
+                                <p class="fw-bold fs-5 mb-0">$@item.Discount.Value.ToString("0.00")</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="fw-bold fs-5 mb-0">$@item.Price.ToString("0.00")</p>
+                        }
+
+                        <button class="btn btn-dark w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-@item.Id">
+                            Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="modalLabel-@item.Id" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel-@item.Id">@item.Name</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body d-flex gap-4 flex-wrap">
+                            <img src="@item.Image" alt="@item.Name" class="img-fluid rounded shadow-sm" style="max-width: 300px;" />
+                            <div>
+                                <p>@item.Description</p>
+                                @if (item.Discount != null)
+                                {
+                                    <p class="text-muted text-decoration-line-through mb-0">$@item.Price.ToString("0.00")</p>
+                                    <p class="fs-4 fw-bold">$@item.Discount.Value.ToString("0.00")</p>
+                                }
+                                else
+                                {
+                                    <p class="fs-4 fw-bold">$@item.Price.ToString("0.00")</p>
+                                }
+
+                                <form asp-controller="Shop" asp-action="Buy" method="post">
+                                    <input type="hidden" name="productId" value="@item.Id" />
+                                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

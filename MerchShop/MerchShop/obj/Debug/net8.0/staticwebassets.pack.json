@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\img\\Phobos-maintaining.jpg"
     },
     {
+      "Id": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\wwwroot\\img\\profileIcon.png",
+      "PackagePath": "staticwebassets\\img\\profileIcon.png"
+    },
+    {
       "Id": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

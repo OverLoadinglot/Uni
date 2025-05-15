@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2F2mkZ/ABlxv3qC6JhWajEaWbli+fZwwBkrj4OhXZ/k=",
+  "Hash": "TBsqfqDN7w7iCPSSSEob22R8INEHrNFOFsDeHom0Vxk=",
   "Source": "MerchShop",
   "BasePath": "_content/MerchShop",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\Phobos-maintaining.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\wwwroot\\img\\profileIcon.png",
+      "SourceId": "MerchShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\wwwroot\\",
+      "BasePath": "_content/MerchShop",
+      "RelativePath": "img/profileIcon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\profileIcon.png"
     },
     {
       "Identity": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\wwwroot\\js\\site.js",

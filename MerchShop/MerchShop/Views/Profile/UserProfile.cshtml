@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h2>Profile Settings</h2>
+
+<form asp-controller="Profile" asp-action="UserProfile" method="post">
+    <div class="mb-3">
+        <label for="nickname" class="form-label">Nickname</label>
+        <input type="text" class="form-control" id="nickname" name="Nickname" value="@Model.Nickname" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="currentPassword" class="form-label">Current Password</label>
+        <input type="password" class="form-control" id="currentPassword" name="CurrentPassword" />
+    </div>
+
+    <div class="mb-3">
+        <label for="newPassword" class="form-label">New Password</label>
+        <input type="password" class="form-control" id="newPassword" name="NewPassword" />
+    </div>
+
+    <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirm New Password</label>
+        <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" />
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+</form>
