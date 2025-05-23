@@ -23,6 +23,12 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Songs</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Shop" asp-action="Shop">Shop</a>
                     </li>
                     
@@ -32,7 +38,7 @@
                     @if (role == "Admin")
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Admin" asp-action="AdminPanel">User List</a>
+                            <a class="nav-link text-dark" asp-controller="Admin" asp-action="AdminPanel">Admin Panel</a>
                         </li>
                     }
                     

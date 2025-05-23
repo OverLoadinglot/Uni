@@ -7,12 +7,7 @@
 <form asp-controller="Profile" asp-action="UserProfile" method="post">
     <div class="mb-3">
         <label for="nickname" class="form-label">Nickname</label>
-        <input type="text" class="form-control" id="nickname" name="Nickname" value="@Model.Nickname" required />
-    </div>
-
-    <div class="mb-3">
-        <label for="currentPassword" class="form-label">Current Password</label>
-        <input type="password" class="form-control" id="currentPassword" name="CurrentPassword" />
+        <input type="text" class="form-control" id="nickname" name="Nickname" value="@Model.Name" required />
     </div>
 
     <div class="mb-3">
@@ -25,5 +20,5 @@
         <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" />
     </div>
 
-    <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+    <button type="submit" class="btn btn-dark w-100">Update Profile</button>
 </form>

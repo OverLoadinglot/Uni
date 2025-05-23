@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj": {}
+    "C:\\Users\\Женя\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj": {
+    "C:\\Users\\Женя\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj",
+        "projectUniqueName": "C:\\Users\\Женя\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj",
         "projectName": "MerchShop",
-        "projectPath": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj",
-        "packagesPath": "C:\\Users\\kotof\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\obj\\",
+        "projectPath": "C:\\Users\\Женя\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj",
+        "packagesPath": "C:\\Users\\Женя\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Женя\\Uni\\MerchShop\\MerchShop\\obj\\",
         "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\kotof\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Женя\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +27,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

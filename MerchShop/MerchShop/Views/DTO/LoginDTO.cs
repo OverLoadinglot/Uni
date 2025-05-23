@@ -1,4 +1,4 @@
-namespace MerchShop.Views.DBO;
+namespace MerchShop.Views.DTO;
 
 public class LoginDTO
 {

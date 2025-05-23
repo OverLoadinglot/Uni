@@ -1,6 +1,6 @@
 using MerchShop.Models;
 using MerchShop.Models.Data;
-using MerchShop.Views.DBO;
+using MerchShop.Views.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
