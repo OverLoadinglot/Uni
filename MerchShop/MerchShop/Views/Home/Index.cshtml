@@ -1,7 +1,51 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<main class="flex flex-col gap-10 p-6 md:p-10 text-white">
+  <section class="bg-zinc-800 rounded-2xl p-6 md:p-10 text-center space-y-4">
+    <h2 class="text-2xl font-semibold section-heading">Enter the Underworld</h2>
+    <p class="text-zinc-400 max-w-2xl mx-auto about-section-text" style="color: #e0e0e0; line-height: 1.8; font-size: 1.3rem;">
+      Discover the dark soundscapes and haunting allure of Futakuchi Mana.
+      Dive deep into a world where spectral melodies meet horror aesthetics,
+      crafting an unforgettable auditory and visual journey.
+    </p>
+    <div class="col mt-4">
+      <img src="~/img/Futakuchi_Mana_Logo.png" alt="Futakuchi Mana with Imp" class="img-fluid about-img rounded-circle border border-danger p-2 w-25" />
+    </div>
+    <div class="flex justify-center gap-4 mt-4"> <a asp-controller="Music" asp-action="Music" class="btn btn-primary btn-lg custom-btn-red">
+        <i class="fas fa-arrow-right me-2"></i> 🎧 Listen Now
+      </a>
+      <a asp-controller="Shop" asp-action="Shop" class="btn btn-primary btn-lg custom-btn-red">
+        <i class="fas fa-arrow-right me-2"></i> 🛒 Visit Shop
+      </a>
+    </div>
+  </section>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-</div>
+  <hr class="about-divider">
+
+  <section class="bg-zinc-800 rounded-2xl p-6 md:p-10 text-center space-y-4 about-section">
+    <h2 class="text-2xl font-semibold section-heading">Who is Futakuchi Mana?</h2>
+    <p class="text-zinc-400 max-w-2xl mx-auto about-section-text">
+      A spectral echo in the underground music scene, Futakuchi Mana fuses haunted melodies with horror aesthetics to create an unforgettable experience. Her unique sound weaves together elements of dark ambient, gothic electronic, and experimental industrial,
+      crafting a sonic landscape that is both chilling and mesmerizing.
+    </p>
+    <p class="text-center mt-4">
+      <a asp-controller="Home" asp-action="About" class="btn btn-primary btn-lg custom-btn-red">
+        <i class="fas fa-arrow-right me-2"></i> Learn more about her journey →
+      </a>
+    </p>
+  </section>
+
+  <hr class="about-divider">
+
+  <section class="bg-zinc-800 rounded-2xl p-6 md:p-10 text-center space-y-4 about-section">
+    <h2 class="text-2xl font-semibold section-heading">Join the Coven</h2>
+    <p class="text-zinc-400 max-w-2xl mx-auto about-section-text">
+      Become one with the shadows. Sign up for our newsletter to receive exclusive updates on new music,
+      merch drops, hidden content, and arcane insights directly to your inbox.
+    </p>
+    <form class="flex justify-center gap-2 flex-wrap">
+      <input type="email" placeholder="you@email.com" class="px-4 py-2 rounded-xl bg-zinc-700 text-white placeholder-zinc-400 focus:outline-none form-control mb-4"> 
+      <button class="btn btn-primary btn-lg custom-btn-red">Subscribe</button>
+    </form>
+  </section>
+</main>
+
+<hr class="about-divider">

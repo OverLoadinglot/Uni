@@ -63,5 +63,13 @@ namespace MerchShop.Controllers
             ViewBag.LoginError = "Invalid username or password.";
             return View();
         }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Authentication");
+        }
     }
 }

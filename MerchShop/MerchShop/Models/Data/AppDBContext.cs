@@ -10,4 +10,5 @@ public class AppDBContext : DbContext
     public DbSet<Role> Roles { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<Collection> Collections { get; set; }
+    public DbSet<Music> Musics { get; set; }
 }

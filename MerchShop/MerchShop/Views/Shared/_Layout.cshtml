@@ -11,7 +11,9 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
         <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MerchShop</a>
+            <a class="navbar-brand" role="button" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/img/Futakuchi_Mana_Logo.png" alt="Mana Logo"  style="max-height: 50px" >
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -25,34 +27,35 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Songs</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Music" asp-action="Music">Music</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Shop" asp-action="Shop">Shop</a>
                     </li>
-                    
+
                     @{
                         var role = Context.Session.GetString("Role");
                     }
                     @if (role == "Admin")
                     {
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Admin" asp-action="AdminPanel">Admin Panel</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Admin" asp-action="AdminPanel">Admin Panel</a>
+                        </li>
                     }
-                    
-                </ul> <ul class="navbar-nav">
+
+                </ul>
+                <ul class="navbar-nav">
                     @if (role == null)
                     {
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Authentication" asp-action="Login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <span class="nav-link text-muted px-1">/</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Authentication" asp-action="Registration">Register</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Authentication" asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <span class="nav-link text-muted px-1">/</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Authentication" asp-action="Registration">Register</a>
+                        </li>
                     }
                     else
                     {

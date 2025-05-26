@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MerchShop.Models;
+using MerchShop.Models.Data;
 
 namespace MerchShop.Controllers;
 
