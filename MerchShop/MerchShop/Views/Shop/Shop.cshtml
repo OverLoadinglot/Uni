@@ -1,68 +1,257 @@
-@model List<Product>
+@model List<MerchShop.Models.Collection>
+
 @{
-    ViewData["Title"] = "Shop";
+ViewData["Title"] = "Futakuchi Mana Merch Shop";
+var role = Context.Session.GetString("Role");
+bool isAdmin = (role == "Admin");
 }
 
-<div class="container">
-    <h1 class="text-center">Shop</h1>
-    <div class="row mt-4">
-        @foreach (var item in Model)
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <img src="~/img/Futakuchi_Mana_Shop_Banner.png" alt="Futakuchi Mana Banner" class="img-fluid rounded-3" style="max-height: 350px; object-fit: cover; width: 100%; border: 3px solid #ff3333; box-shadow: 0 0 20px rgba(255, 51, 51, 0.7);" />
+        <h1 class="mt-4 display-4">Futakuchi Mana Merch Shop</h1>
+        <p class="lead text-muted">Dive In!</p>
+    </div>
+
+    @if (isAdmin)
+    {
+    <div class="mb-4 text-end">
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCollectionModal">
+            <i class="fas fa-plus-circle me-2"></i>+ Add Collection
+        </button>
+    </div>
+
+    <div class="modal fade" id="addCollectionModal" tabindex="-1" aria-labelledby="addCollectionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCollectionModalLabel">Add New Collection</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form asp-controller="AdminShop" asp-action="AddCollection" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="collectionName" class="form-label">Collection Name</label>
+                            <input type="text" class="form-control" id="collectionName" name="Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="collectionImage" class="form-label">Collection Banner</label>
+                            <input type="file" class="form-control" id="collectionImage" name="Image" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Collection</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    }
+
+    @if (!Model.Any())
+    {
+    <p class="text-center text-muted fs-4">Merch will be available soon</p>
+    @if (isAdmin)
+    {
+    <p class="text-center text-muted">As an administrator, you can create your first collection</p>
+    }
+    }
+    else
+    {
+    @foreach (var collection in Model)
+    {
+    <div class="mb-5 p-4 rounded shadow-lg" style="background-color: #282828;">
+        <div class="mb-4 position-relative d-flex align-items-center">
+            <h2 class="text-center w-100" style="color: #ff3333;">@collection.Name</h2>
+            @if (isAdmin)
+            {
+            <button type="button" class="btn btn-danger btn-sm"
+                    style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);"
+                    data-bs-toggle="modal" data-bs-target="#deleteCollectionModal-@collection.Id">
+                <i class="fas fa-trash-alt me-1"></i> Delete Collection
+            </button>
+            }
+        </div>
+
+        @if (!string.IsNullOrEmpty(collection.Image))
         {
-            <div class="col-md-4 mb-4">
-                <div class="card border-0 shadow-sm">
-                    <img src="@item.Image" class="card-img-top" alt="@item.Name">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">@item.Name</h5>
+        <img src="@collection.Image" alt="@collection.Name Banner" class="img-fluid collection-banner mb-4" />
+        }
+        else if (isAdmin)
+        {
+        <div class="alert alert-warning text-center" role="alert" style="border: 1px solid #ffcc00; background-color: #3d3300; color: #ffeb99;">
+            No Image for the collection. <a href="#" class="alert-link text-decoration-underline" style="color: #ffeb99;">Add</a>
+        </div>
+        }
 
-                        @if (item.Discount != null)
-                        {
-                            <div class="d-flex justify-content-center gap-2">
-                                <p class="text-muted text-decoration-line-through mb-0">$@item.Price.ToString("0.00")</p>
-                                <p class="fw-bold fs-5 mb-0">$@item.Discount.Value.ToString("0.00")</p>
-                            </div>
-                        }
-                        else
-                        {
-                            <p class="fw-bold fs-5 mb-0">$@item.Price.ToString("0.00")</p>
-                        }
-
-                        <button class="btn btn-dark w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-@item.Id">
-                            Details
-                        </button>
+        <div class="row g-4">
+            @if (!collection.Products.Any())
+            {
+            <div class="col-12">
+                <p class="text-muted text-center fs-5">No Items for the Collection.</p>
+            </div>
+            }
+            @foreach (var product in collection.Products)
+            {
+            <div class="col-md-3 col-sm-6">
+                <div class="card shadow-sm h-100">
+                    @if (!string.IsNullOrEmpty(product.Image))
+                    {
+                    <img src="@product.Image" alt="@product.Name" class="card-img-top" />
+                    }
+                    else if (isAdmin)
+                    {
+                    <div class="d-flex align-items-center justify-content-center bg-dark" style="height: 200px; color: #777;">
+                        No Image
+                    </div>
+                    }
+                    <div class="card-body text-center d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title">@product.Name</h5>
+                            @if (product.Discount.HasValue && product.Discount > 0)
+                            {
+                                <p class="d-flex justify-content-center align-items-baseline m-0">
+                                    <span class="text-decoration-line-through text-muted small me-2" style="font-size: 1rem">
+                                        $@product.Price.ToString("0.00")
+                                    </span>
+                                    <span class="fw-bold" style="font-size: 1.3rem; color: #ff6666;">
+                                        $@((product.Price * (1 - product.Discount.Value / 100)).ToString("0.00"))
+                                    </span>
+                                </p>
+                            <p class="text-success fw-bold">Discount: @(product.Discount.Value)%</p>
+                            }
+                            else
+                            {
+                                <p class="fw-bold fs-4" style="color: #ff6666;">$@product.Price.ToString("0.00")</p>
+                            }
+                            <p class="text-muted small">Available: @product.Stock</p>
+                        </div>
+                        <div>
+                            <a asp-area="" asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@product.Id" class="btn btn-primary w-100">Buy</a>
+                            @if (isAdmin)
+                            {
+                            <button type="button" class="btn btn-danger btn-sm mt-2 w-100" data-bs-toggle="modal" data-bs-target="#deleteProductModal-@product.Id">
+                                <i class="fas fa-trash-alt me-1"></i> Delete Item
+                            </button>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="modal fade" id="modal-@item.Id" tabindex="-1" aria-labelledby="modalLabel-@item.Id" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
+            @if (isAdmin)
+            {
+            <div class="modal fade" id="deleteProductModal-@product.Id" tabindex="-1" aria-labelledby="deleteProductModalLabel-@product.Id" aria-hidden="true">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalLabel-@item.Id">@item.Name</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            <h5 class="modal-title" id="deleteProductModalLabel-@product.Id">Confirm Deletion</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body d-flex gap-4 flex-wrap">
-                            <img src="@item.Image" alt="@item.Name" class="img-fluid rounded shadow-sm" style="max-width: 300px;" />
-                            <div>
-                                <p>@item.Description</p>
-                                @if (item.Discount != null)
-                                {
-                                    <p class="text-muted text-decoration-line-through mb-0">$@item.Price.ToString("0.00")</p>
-                                    <p class="fs-4 fw-bold">$@item.Discount.Value.ToString("0.00")</p>
-                                }
-                                else
-                                {
-                                    <p class="fs-4 fw-bold">$@item.Price.ToString("0.00")</p>
-                                }
-
-                                <form asp-controller="Shop" asp-action="Buy" method="post">
-                                    <input type="hidden" name="productId" value="@item.Id" />
-                                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                                </form>
-                            </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete "@product.Name"? This action cannot be undone.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <form asp-controller="AdminShop" asp-action="DeleteProduct" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@product.Id" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        }
+            }
+            }
+
+            @if (isAdmin)
+            {
+            <div class="col-md-3 col-sm-6 d-flex align-items-center justify-content-center">
+                <button type="button" class="btn add-item-card d-flex flex-column align-items-center justify-content-center"
+                        data-bs-toggle="modal" data-bs-target="#addProductModal-@collection.Id">
+                    <span class="mb-2">+</span>
+                    <span style="font-size: 1.2rem; font-weight: normal;">Add Item</span>
+                </button>
+            </div>
+
+            <div class="modal fade" id="addProductModal-@collection.Id" tabindex="-1" aria-labelledby="addProductModalLabel-@collection.Id" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addProductModalLabel-@collection.Id">Add new Item into"@collection.Name"</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form asp-controller="AdminShop" asp-action="AddProduct" method="post" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <input type="hidden" name="CollectionId" value="@collection.Id" />
+
+                                <div class="mb-3">
+                                    <label for="productName-@collection.Id" class="form-label">Item Name</label>
+                                    <input type="text" class="form-control" id="productName-@collection.Id" name="Name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="productDescription-@collection.Id" class="form-label">Description</label>
+                                    <textarea class="form-control" id="productDescription-@collection.Id" name="Description" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="productPrice-@collection.Id" class="form-label">Price</label>
+                                    <input type="number" step="0.01" class="form-control" id="productPrice-@collection.Id" name="Price" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="productDiscount-@collection.Id" class="form-label">Discount (1 - 100)</label>
+                                    <input type="number" step="1" min="1" max="100" class="form-control" id="productDiscount-@collection.Id" name="Discount">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="productStock-@collection.Id" class="form-label">Quantity</label>
+                                    <input type="number" class="form-control" id="productStock-@collection.Id" name="Stock" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="productImage-@collection.Id" class="form-label">Item Image</label>
+                                    <input type="file" class="form-control" id="productImage-@collection.Id" name="Image" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Create Item</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
     </div>
+
+    @if (isAdmin)
+    {
+    <div class="modal fade" id="deleteCollectionModal-@collection.Id" tabindex="-1" aria-labelledby="deleteCollectionModalLabel-@collection.Id" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteCollectionModalLabel-@collection.Id">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete the collection "@collection.Name" and all its items? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form asp-controller="AdminShop" asp-action="DeleteCollection" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@collection.Id" />
+                        <button type="submit" class="btn btn-danger">Delete Collection</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+    <hr class="my-5 bg-dark" style="border-top: 3px dashed #ff3333;" />
+    }
+    }
 </div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
