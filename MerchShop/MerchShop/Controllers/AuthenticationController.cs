@@ -23,20 +23,22 @@ namespace MerchShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registration(RegistrationDTO userDto)
         {
-            if (ModelState.IsValid) return View(userDto);
+            if (!ModelState.IsValid) return View(userDto);
             
-            var existingUser = _context.Users.FirstOrDefault(u => u.Name == userDto.Name);
+            var existingUser = _context.Users.FirstOrDefault(u => u.Email == userDto.Email);
             
             if (existingUser != null)
             {
-                ModelState.AddModelError("Username", "This username is already taken.");
+                ModelState.AddModelError("Email", "This Email is already taken.");
                 return View(userDto);
             }
 
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
+            
             User user = new User()
             {
-                Name = userDto.Name,
-                Password = userDto.Password,
+                Email = userDto.Email,
+                Password = hashedPassword,
                 IdRole = 2
             };
             
@@ -52,12 +54,16 @@ namespace MerchShop.Controllers
         {
             User user = _context.Users
                 .Include(u => u.Role)
-                .FirstOrDefault(u => u.Name == userDto.Name && u.Password == userDto.Password);
+                .FirstOrDefault(u => u.Email == userDto.Email);
+            
             if (user != null)
             {
-                HttpContext.Session.SetString("Username", user.Name);
-                HttpContext.Session.SetString("Role", user.Role.RoleName);
-                return RedirectToAction("Index", "Home");
+                if (BCrypt.Net.BCrypt.Verify(userDto.Password, user.Password))
+                {
+                    HttpContext.Session.SetString("UserEmail", user.Email);
+                    HttpContext.Session.SetString("Role", user.Role.RoleName);
+                    return RedirectToAction("Index", "Home");
+                }
             }
 
             ViewBag.LoginError = "Invalid username or password.";

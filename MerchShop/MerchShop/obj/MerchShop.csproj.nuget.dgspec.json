@@ -49,6 +49,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt-Official": {
+              "target": "Package",
+              "version": "[0.1.109, )"
+            },
             "EntityFramework": {
               "target": "Package",
               "version": "[6.5.1, )"

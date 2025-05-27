@@ -1,24 +1,46 @@
+@model MerchShop.Views.DTO.ChangePasswordDTO;
 @{
-    ViewData["Title"] = "Profile";
+ViewData["Title"] = "Profile Settings";
 }
 
-<h2>Profile Settings</h2>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-4 shadow-lg" style="max-width: 500px; width: 100%;">
+        <div class="card-header text-center">
+            <h2 class="section-heading">Your Profile</h2>
+        </div>
+        <div class="card-body">
+            @if (TempData["SuccessMessage"] != null)
+            {
+            <div class="alert alert-success mb-3">@TempData["SuccessMessage"]</div>
+            }
+            @if (ViewBag.UserEmail != null)
+            {
+            <div class="mb-3">
+                <label class="form-label">Your Email:</label>
+                <p class="form-control-plaintext text-white font-bold">@ViewBag.UserEmail</p>
+            </div>
+            }
+            <h3 class="text-xl font-semibold mb-3 text-center section-heading">Change Your Password</h3>
 
-<form asp-controller="Profile" asp-action="UserProfile" method="post">
-    <div class="mb-3">
-        <label for="nickname" class="form-label">Nickname</label>
-        <input type="text" class="form-control" id="nickname" name="Nickname" value="@Model.Name" required />
+            <form asp-controller="Profile" asp-action="UserProfile" method="post">
+                <div class="mb-3">
+                    <label asp-for="NewPassword" class="form-label"></label>
+                    <input asp-for="NewPassword" type="password" class="form-control" />
+                    <span asp-validation-for="NewPassword" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ConfirmNewPassword" class="form-label"></label>
+                    <input asp-for="ConfirmNewPassword" type="password" class="form-control" />
+                    <span asp-validation-for="ConfirmNewPassword" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn custom-btn-red w-100 mt-4">Update Password</button>
+            </form>
+        </div>
     </div>
+</div>
 
-    <div class="mb-3">
-        <label for="newPassword" class="form-label">New Password</label>
-        <input type="password" class="form-control" id="newPassword" name="NewPassword" />
-    </div>
-
-    <div class="mb-3">
-        <label for="confirmPassword" class="form-label">Confirm New Password</label>
-        <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" />
-    </div>
-
-    <button type="submit" class="btn btn-dark w-100">Update Profile</button>
-</form>
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

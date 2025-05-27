@@ -1,19 +1,38 @@
+@model MerchShop.Views.DTO.LoginDTO;
 @{
-ViewData["Title"] = "Login";
+ViewData["Title"] = "Log In to Your Account"; // Более информативный заголовок
 }
 
-<form asp-controller="Authentication" asp-action="Login" method="post">
-    <div class="mb-3">
-        <label for="name" class="form-label">Username</label>
-        <input type="text" class="form-control" name="name" required />
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-4 shadow-lg" style="max-width: 400px; width: 100%;">
+        <div class="card-header text-center">
+            <h2 class="section-heading">Welcome Back</h2>
+        </div>
+        <div class="card-body">
+            <form asp-controller="Authentication" asp-action="Login" method="post">
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" type="email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" type="password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn custom-btn-red w-100">Login</button>
+            </form>
+            @if (ViewBag.LoginError != null)
+            {
+            <div class="alert alert-danger mt-3">@ViewBag.LoginError</div>
+            }
+            @if (TempData["SuccessMessage"] != null) // Отображаем сообщение об успешной регистрации
+            {
+            <div class="alert alert-success mt-3">@TempData["SuccessMessage"]</div>
+            }
+        </div>
+        <div class="card-footer text-center">
+            <p class="text-zinc-400">Don't have an account? <a asp-controller="Authentication" asp-action="Registration" class="text-danger">Register Now</a></p>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" name="password" required />
-    </div>
-    <button type="submit" class="btn btn-dark w-100">Login</button>
-</form>
-@if (ViewBag.LoginError != null)
-{
-<div class="alert alert-danger mt-3">@ViewBag.LoginError</div>
-}
+</div>
