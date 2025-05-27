@@ -62,6 +62,7 @@ namespace MerchShop.Controllers
                 {
                     HttpContext.Session.SetString("UserEmail", user.Email);
                     HttpContext.Session.SetString("Role", user.Role.RoleName);
+                    HttpContext.Session.SetInt32("UserId", user.Id);
                     return RedirectToAction("Index", "Home");
                 }
             }

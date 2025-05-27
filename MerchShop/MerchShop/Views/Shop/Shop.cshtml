@@ -128,7 +128,7 @@ bool isAdmin = (role == "Admin");
                             <p class="text-muted small">Available: @product.Stock</p>
                         </div>
                         <div>
-                            <a asp-area="" asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@product.Id" class="btn btn-primary w-100">Buy</a>
+                            <a asp-area="" asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@product.Id" class="btn btn-primary w-100">View</a>
                             @if (isAdmin)
                             {
                             <button type="button" class="btn btn-danger btn-sm mt-2 w-100" data-bs-toggle="modal" data-bs-target="#deleteProductModal-@product.Id">
