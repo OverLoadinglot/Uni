@@ -14,15 +14,37 @@ namespace MerchShop.Controllers
         {
             _context = context;
         }
-        
-        public IActionResult Registration() => View();
 
-        public IActionResult Login() => View();
+        public IActionResult Registration()
+        {
+            var userRole = HttpContext.Session.GetString("Role");
+            if (userRole != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+
+        public IActionResult Login()
+        {
+            var userRole = HttpContext.Session.GetString("Role");
+            if (userRole != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Registration(RegistrationDTO userDto)
         {
+            var userRole = HttpContext.Session.GetString("Role");
+            if (userRole != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
             if (!ModelState.IsValid) return View(userDto);
             
             var existingUser = _context.Users.FirstOrDefault(u => u.Email == userDto.Email);
@@ -52,6 +74,12 @@ namespace MerchShop.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(LoginDTO userDto)
         {
+            var userRole = HttpContext.Session.GetString("Role");
+            if (userRole != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
             User user = _context.Users
                 .Include(u => u.Role)
                 .FirstOrDefault(u => u.Email == userDto.Email);

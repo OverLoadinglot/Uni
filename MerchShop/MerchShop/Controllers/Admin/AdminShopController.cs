@@ -24,6 +24,13 @@ namespace MerchShop.Controllers
             {
                 return RedirectToAction("Shop", "Shop");
             }
+            
+            var extension = Path.GetExtension(dto.Image.FileName).ToLowerInvariant();
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".webp" };
+            if (!allowedExtensions.Contains(extension))
+            {
+                return RedirectToAction("Shop", "Shop");
+            }
 
             var fileName = Path.GetFileNameWithoutExtension(dto.Image.FileName) + "_" + Guid.NewGuid() + Path.GetExtension(dto.Image.FileName);
             var path = Path.Combine(_environment.WebRootPath, "img/Shop", fileName);
@@ -49,6 +56,13 @@ namespace MerchShop.Controllers
         public async Task<IActionResult> AddProduct(ProductDTO dto)
         {
             if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Shop", "Shop");
+            }
+            
+            var extension = Path.GetExtension(dto.Image.FileName).ToLowerInvariant();
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".webp" };
+            if (!allowedExtensions.Contains(extension))
             {
                 return RedirectToAction("Shop", "Shop");
             }

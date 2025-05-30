@@ -29,6 +29,13 @@ public class AdminMusicController : Controller
             {
                 return RedirectToAction("Music", "Music");
             }
+            
+            var extension = Path.GetExtension(dto.Image.FileName).ToLowerInvariant();
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".webp" };
+            if (!allowedExtensions.Contains(extension))
+            {
+                return RedirectToAction("Music", "Music");
+            }
 
             var fileName = Path.GetFileNameWithoutExtension(dto.Image.FileName) + "_" + Guid.NewGuid() + Path.GetExtension(dto.Image.FileName);
             var path = Path.Combine(_environment.WebRootPath, "img/Music", fileName);
