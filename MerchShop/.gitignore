@@ -1,0 +1,43 @@
+# === Visual Studio ===
+*.user
+*.suo
+*.userprefs
+*.vsp
+*.vs/
+.vs/
+
+# Build outputs
+bin/
+obj/
+
+# Visual Studio cache files
+*.VC.db
+*.VC.opendb
+
+# Rider (JetBrains)
+.idea/
+*.sln.iml
+/.idea/**/workspace.xml
+/.idea/**/tasks.xml
+/.idea/**/usage.statistics.xml
+/.idea/dictionaries/
+
+# Rider can share some settings — если вы хотите шарить codestyles или run configurations, 
+# то не игнорируйте соответствующие подпапки, а явно исключите из игнора:
+!/.idea/codestyles/
+/.idea/runConfigurations/
+
+# Dotnet tool/state
+*.pidb
+*.log
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# NuGet
+*.nupkg
+packages/

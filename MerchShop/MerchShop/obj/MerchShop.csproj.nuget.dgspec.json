@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj": {}
+    "E:\\MyProjects\\MerchShop\\MerchShop\\MerchShop\\MerchShop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj": {
+    "E:\\MyProjects\\MerchShop\\MerchShop\\MerchShop\\MerchShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj",
+        "projectUniqueName": "E:\\MyProjects\\MerchShop\\MerchShop\\MerchShop\\MerchShop.csproj",
         "projectName": "MerchShop",
-        "projectPath": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\MerchShop.csproj",
-        "packagesPath": "C:\\Users\\kotof\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kotof\\Uni\\MerchShop\\MerchShop\\obj\\",
+        "projectPath": "E:\\MyProjects\\MerchShop\\MerchShop\\MerchShop\\MerchShop.csproj",
+        "packagesPath": "C:\\Users\\matuh\\.nuget\\packages\\",
+        "outputPath": "E:\\MyProjects\\MerchShop\\MerchShop\\MerchShop\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\kotof\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\matuh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -95,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400-preview.0.24324.5/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
